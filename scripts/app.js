@@ -34,96 +34,63 @@
 //- call different animations based on direction of charecter 
 // creating the AI might prove to be the biggest challage here.. maybe figuring out a way to make the charecters transition smoothly between grids 
 
-
-
 const grid = document.querySelector('.grid')
 const scoreBoard = document.querySelector('.score')
-
 
 document.querySelector('#gameOver').style.visibility = 'hidden'
 document.querySelector('#gameWin').style.visibility = 'hidden'
 
 // document.querySelector('.gameWin-score')
-const gameOverAudio = document.querySelector('#gameOver-audio')
-const gameWinAudio = document.querySelector('#gameWin-audio')
+// const gameOverAudio = document.querySelector('#gameOver-audio')
+// const gameWinAudio = document.querySelector('#gameWin-audio')
 const eatScaredGhostAudio = document.querySelector('#scaredGost-audio')
-const eatPowerDotsAudio = document.querySelector('#eat-power-dots')
-
-let score = 0
-const width = 28
-const cellCount = width * width
-const cells = []
-const isOver = false
-// let target = 3280
-
-
-// function updateLabels() {
-//   document.querySelector('.collected').innerHTML =  + ' / ' + target
-//   document.querySelector('.score').innerHTML = target - score
-// }
-// updateLabels()
-
-// function updateProgress() {
-//   document.querySelector('#progress').setAttribute('value', score)
-//   document.querySelector('#progress').setAttribute('max', target)
-// }
-// updateProgress()
-
-const maze = [
-  1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-  1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,
-  1,0,1,1,1,1,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,1,1,1,1,0,1,
-  1,0,1,1,1,1,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,1,1,1,1,0,1,
-  1,0,1,1,1,1,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,1,1,1,1,0,1,
-  1,0,1,1,1,1,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,1,1,1,1,0,1,
-  1,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,1,
-  1,0,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,0,1,
-  1,0,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,0,1,
-  1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,
-  1,1,1,1,1,1,0,1,1,1,0,0,0,0,0,0,0,0,1,1,1,0,1,1,1,1,1,1,
-  1,1,1,1,1,1,0,1,1,1,0,1,1,2,2,1,1,0,1,1,1,0,1,1,1,1,1,1,
-  1,1,1,1,1,1,0,1,1,1,0,1,2,2,2,2,1,0,1,1,1,0,1,1,1,1,1,1,
-  0,0,0,0,0,0,0,0,0,0,0,1,2,2,2,2,1,0,0,0,0,0,0,0,0,0,0,0,
-  1,1,1,1,1,1,0,1,1,1,0,1,2,2,2,2,1,0,1,1,1,0,1,1,1,1,1,1,
-  1,1,1,1,1,1,0,1,1,1,0,1,1,1,1,1,1,0,1,1,1,0,1,1,1,1,1,1,
-  1,1,1,1,1,1,0,1,1,1,0,1,1,1,1,1,1,0,1,1,1,0,1,1,1,1,1,1,
-  1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-  1,0,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,0,1,
-  1,0,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,0,1,
-  1,3,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,3,1,
-  1,0,1,1,0,1,1,1,0,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1,1,0,1,
-  1,0,1,1,0,1,1,1,0,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1,1,0,1,
-  1,0,0,0,0,1,1,1,0,0,0,0,0,1,1,0,0,0,0,0,1,1,1,0,0,0,0,1,
-  1,0,1,1,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,1,1,0,1,
-  1,0,1,1,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,1,1,0,1,
-  1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-  1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
-]
-
+// const eatPowerDotsAudio = document.querySelector('#eat-power-dots')
 
 const left = 37
 const right = 39
 const up = 38
 const down = 40
 
-// const pacmanStartPosition = 292
-let pacmanCurrentPosition = 490
+// Create Ghost Class 
+class Ghost {
+  constructor(name, startPosition, pace, directions){
+    this.name = name
+    this.startPosition = startPosition
+    this.directions = directions
+    this.currentDirection = this.directions[Math.floor(Math.random() * this.directions.length)] 
+    this.pace = pace
+    this.currentPosition = startPosition
+    this.isScared = false
+    this.timerId = 0
+  }
 
-function startGame() {
+  changeCurrentDirection() {
+    this.currentDirection = this.directions[Math.floor(Math.random() * this.directions.length)] 
+  }
 
-
-
-
-
-  
+  changeCurrentDirectionToUp() {
+    this.currentDirection = this.directions[2]
+  }
 }
 
+let pacmanCurrentPosition = 0
+let score = 0
+let cells = []
+let ghosts = []
+
+function removeAllChildNodes(parent) {
+  while (parent.firstChild) {
+    parent.removeChild(parent.firstChild);
+  }
+}
 
 // Creating Grid
-function createGrid() {
+function createGrid(maze) {
+  removeAllChildNodes(grid)
+  cells = []
+
   for ( let i = 0; i < maze.length; i++){
     const cell = document.createElement('div')
-    // cell.innerText = i
     grid.appendChild(cell)
     cells.push(cell)
 
@@ -131,23 +98,18 @@ function createGrid() {
       cells[i].classList.add('dots')
     } else if (maze[i] === 1) {
       cells[i].classList.add('walls')
-    } else if (maze [i] === 2) {
+    } else if (maze[i] === 2) {
       cells[i].classList.add('ghost-house')
-    } else if (maze [i] === 3) {
+    } else if (maze[i] === 3) {
       cells[i].classList.add('power-dots')
     } 
   }
-  addPacman(right)
 }
-createGrid()
-
 
 // Adding Pac-Man
-function addPacman(key) {
-  const currentCell = cells[pacmanCurrentPosition]
-  currentCell.classList.add('pacman')
+function addPacman(direction) {
   let cssClass
-  switch (key) {
+  switch (direction) {
     case left:
       cssClass = 'pacman'
       break;
@@ -161,24 +123,93 @@ function addPacman(key) {
       cssClass = 'pacman-down'
       break;
   }
-  currentCell.classList.add(cssClass)
+  cells[pacmanCurrentPosition].classList.add('pacman')
+  cells[pacmanCurrentPosition].classList.add(cssClass)
 }
 
 // Removing Pac-Man
 function removePacman() {
-  const currentCell = cells[pacmanCurrentPosition]
-  currentCell.classList.remove('pacman')
-  currentCell.classList.remove('pacman-up')
-  currentCell.classList.remove('pacman-right')
-  currentCell.classList.remove('pacman-down')
+  const cell = cells[pacmanCurrentPosition]
+  cell.classList.remove('pacman')
+  cell.classList.remove('pacman-up')
+  cell.classList.remove('pacman-right')
+  cell.classList.remove('pacman-down')
 }
 
+// Pac-Man Eats Dots
+function eatDotIfNeeded() {
+  if (cells[pacmanCurrentPosition].classList.contains('dots')){
+    score += 10
+    scoreBoard.innerHTML = score
+    cells[pacmanCurrentPosition].classList.remove('dots')
+  }
+}
+
+function undoScared(){
+  ghosts.forEach((ghost) => {
+    ghost.isScared = false
+  })
+}
+
+// Pac-Man Eats Power-dots
+function eatPowerDotIFNeeded() {
+  if (cells[pacmanCurrentPosition].classList.contains('power-dots')){
+    cells[pacmanCurrentPosition].classList.remove('power-dots')  
+    score += 50
+    scoreBoard.innerHTML = score
+    // eatPowerDotsAudio.play('#eat-power-dots')
+    ghosts.forEach((ghost) => {
+      ghost.isScared = true
+      clearInterval(ghost.timerId)
+      ghost.pace = 500
+      setupGhostMovement(ghost)
+    })
+    setTimeout(undoScared, 10000)  
+  }  
+}
+
+// Checking for Wins
+function isGameWon () {
+  if (score === 300) {
+    ghosts.forEach((ghost) => clearInterval(ghost.timerId))
+    document.removeEventListener('keydown', handleKeyDown)
+    document.querySelector('#gameWin').style.visibility = 'visible'
+    // gameWinAudio.play('#gameWin-audio')
+    cells[pacmanCurrentPosition].classList.remove('pacman') 
+    // document.querySelector('.power-dots').style.visibility = 'hidden'
+    ghosts.forEach((ghost) => {
+      cells[ghost.currentPosition].classList.remove(ghost.name) 
+      cells[ghost.currentPosition].classList.remove('scared-ghost') 
+    })
+    // gameWinAudio.play('#gameWin-audio')
+  }
+}
+
+// Checking For Game Over
+function isGameOver() {
+  if (cells[pacmanCurrentPosition].classList.contains('ghost') // if pacman current position contains ghost
+  && !cells[pacmanCurrentPosition].classList.contains('scared-ghost')){  // and pacman current position does not contan scared-ghost
+    ghosts.forEach((ghost) => clearInterval(ghost.timerId))
+    document.removeEventListener('keydown', handleKeyDown)
+    document.querySelector('#gameOver').style.visibility = 'visible'
+    document.querySelector('#restart').addEventListener('click', startGame)  
+    
+    // gameOverAudio.play('#gameover-audio')
+    cells[pacmanCurrentPosition].classList.remove('pacman') 
+    ghosts.forEach((ghost) => {
+      cells[ghost.currentPosition].classList.remove(ghost.name) 
+      cells[ghost.currentPosition].classList.remove('scared-ghost') 
+    })
+  }    
+}
 
 // Moving Pac-Man in The Maze
 function handleKeyDown(event) {
+  const width = Math.sqrt(cells.length)
+  const cellCount = cells.length
   const key = event.keyCode // store the event.keyCode in a variable to save us repeatedly typing it out
   // console.log(pacmanCurrentPosition)
-  removePacman()
+  removePacman(cells[pacmanCurrentPosition])
 
   if (key === left && pacmanCurrentPosition % width !== 0) { 
     if (!cells[pacmanCurrentPosition - 1].classList.contains('walls'))
@@ -205,179 +236,130 @@ function handleKeyDown(event) {
       pacmanCurrentPosition += width 
   }
   addPacman(key)
-  eatingdots()
-  eatingPowerDots()
-  gameWin ()
-  gameOver()
+  eatDotIfNeeded()
+  eatPowerDotIFNeeded()
+  isGameWon()
+  isGameOver()
 }
 
-
-document.addEventListener('keydown', handleKeyDown) // listening for key press
-createGrid() // pass function the starting position of pacman
-
-
-// Pac-Man Eats Dots
-function eatingdots() {
-  if (cells[pacmanCurrentPosition].classList.contains('dots')){
-    score += 10
-    scoreBoard.innerHTML = score
-    cells[pacmanCurrentPosition].classList.remove('dots')
-  }
-}
-
-
-// Pac-Man Eats Power-dots
-function eatingPowerDots() {
-  if (cells[pacmanCurrentPosition].classList.contains('power-dots')){
-    cells[pacmanCurrentPosition].classList.remove('power-dots')  
-    score += 50
-    scoreBoard.innerHTML = score
-    // eatPowerDotsAudio.play('#eat-power-dots')
-    ghosts.forEach((ghost) => {
-      ghost.isScared = true
-      clearInterval(ghost.timerId)
-      ghost.pace = 500
-      moveGhost(ghost)
-    })
-    setTimeout(undoScared, 10000)  
-    
-  }  
-}
-
-
-function undoScared(){
+function addGhosts() {
+  // Add the Ghosts to the Grid 
   ghosts.forEach((ghost) => {
-    ghost.isScared = false
+    cells[ghost.currentPosition].classList.add(ghost.name) // calling individual ghosts using their name
+    cells[ghost.currentPosition].classList.add('ghost') //  
+  })
+
+  ghosts.forEach((ghost) => {
+    setupGhostMovement(ghost)
   })
 }
-
-
-
-// Create Ghost Class 
-class Ghost {
-  constructor(name, startPosition, pace){
-    this.name = name
-    this.startPosition = startPosition
-    this.pace = pace
-    this.currentPosition = startPosition
-    this.isScared = false
-    this.timerId = 0
-  }
-}
-
-
-// Meet the Ghosts
-ghosts = [
-  new Ghost('red-ghost', 349, 250),
-  new Ghost('green-ghost', 350, 300),
-  new Ghost('blue-ghost', 377, 400),
-  new Ghost('orange-ghost', 378, 450)
-]
-
-
-// Add the Ghosts to the Grid 
-ghosts.forEach((ghost) => {
-  cells[ghost.currentPosition].classList.add(ghost.name) // calling individual ghosts using their name
-  cells[ghost.currentPosition].classList.add('ghost') //  
-})
-
-ghosts.forEach((ghost) => {
-  moveGhost(ghost)
-})
-
-// Move the Ghosts 
-let directions = [-1, +1, -width, +width]
-let randomDirection = directions[Math.floor(Math.random() * directions.length)] 
 
 function moveGhost(ghost) {
-  ghost.timerId = setInterval(function(){
-    if (!cells[ghost.currentPosition + randomDirection].classList.contains('walls') &&
-      !cells[ghost.currentPosition + randomDirection].classList.contains('ghost')){  //if this is true...
-      cells[ghost.currentPosition].classList.remove(ghost.name) // remove each ghost name to avoid multiplying 
-      cells[ghost.currentPosition].classList.replace('ghost','scared-ghost') // replace ghost with scared-ghost
-      cells[ghost.currentPosition].classList.remove('scared-ghost') // remove scared-ghost stopped them multiplying
-      
-      if (cells[ghost.currentPosition].classList.contains('ghost-house')) {
-        (ghost.currentPosition += -width)
-      } else {
-        ghost.currentPosition += randomDirection 
-      }
-      
-      cells[ghost.currentPosition].classList.add(ghost.name, 'ghost') // add the ghost 
-      cells[ghost.currentPosition].classList.add('ghost')
-    } randomDirection = directions[Math.floor(Math.random() * directions.length)] // find another random direction
+  if (!cells[ghost.currentPosition + ghost.currentDirection].classList.contains('walls') &&
+      !cells[ghost.currentPosition + ghost.currentDirection].classList.contains('ghost')){  //if this is true...
+    cells[ghost.currentPosition].classList.remove(ghost.name) // remove each ghost name to avoid multiplying 
+    cells[ghost.currentPosition].classList.replace('ghost','scared-ghost') // replace ghost with scared-ghost
+    cells[ghost.currentPosition].classList.remove('scared-ghost') // remove scared-ghost stopped them multiplying
     
-    if (ghost.isScared){
-      cells[ghost.currentPosition].classList.add('scared-ghost')
+    if (cells[ghost.currentPosition].classList.contains('ghost-house')) {
+      ghost.changeCurrentDirectionToUp()
     }
-    gameOver()
 
-    if (ghost.isScared && cells[ghost.currentPosition].classList.contains('pacman')){ 
-      eatScaredGhostAudio.play('#scaredGost-audio')
-      ghost.isScared = false
-      cells[ghost.currentPosition].classList.remove(ghost.name)
-      cells[ghost.currentPosition].classList.replace('ghost','scared-ghost') // replace ghost with scared-ghost
-      cells[ghost.currentPosition].classList.remove('ghost') 
-      cells[ghost.currentPosition].classList.remove('scared-ghost')
-      ghost.currentPosition = ghost.startPosition // return ghosts to starting position
-      score += 100
-      scoreBoard.innerHTML = score
+    ghost.currentPosition += ghost.currentDirection    
+    cells[ghost.currentPosition].classList.add(ghost.name, 'ghost') // add the ghost 
+    cells[ghost.currentPosition].classList.add('ghost')
+  } 
+    
+  ghost.changeCurrentDirection()
   
-      cells[ghost.currentPosition].classList.add(ghost.name, 'ghost') // return the ghost class back to original by adding the 'ghost' class again  
-      cells[ghost.currentPosition].classList.remove('scared-ghost')
-      clearInterval(ghost.timerId)
-      ghost.pace = 100
-      moveGhost(ghost)
-    } 
-  }, ghost.pace)
-}
+  if (ghost.isScared){
+    cells[ghost.currentPosition].classList.add('scared-ghost')
+  }
+  isGameOver()
 
+  if (ghost.isScared && cells[ghost.currentPosition].classList.contains('pacman')){ 
+    eatScaredGhostAudio.play('#scaredGost-audio')
+    ghost.isScared = false
+    cells[ghost.currentPosition].classList.remove(ghost.name)
+    cells[ghost.currentPosition].classList.replace('ghost','scared-ghost') // replace ghost with scared-ghost
+    cells[ghost.currentPosition].classList.remove('ghost') 
+    cells[ghost.currentPosition].classList.remove('scared-ghost')
+    ghost.currentPosition = ghost.startPosition // return ghosts to starting position
+    score += 100
+    scoreBoard.innerHTML = score
 
-// Checking for Wins
-function gameWin () {
-  if (score === 300) {
-    ghosts.forEach((ghost) => { clearInterval(ghost.timerId)})
-    document.removeEventListener('keydown', handleKeyDown)
-    document.querySelector('#gameWin').style.visibility = 'visible'
-    // gameWinAudio.play('#gameWin-audio')
-    cells[pacmanCurrentPosition].classList.remove('pacman') 
-    // document.querySelector('.power-dots').style.visibility = 'hidden'
-    ghosts.forEach((ghost) => {
-      cells[ghost.currentPosition].classList.remove(ghost.name) 
-      cells[ghost.currentPosition].classList.remove('scared-ghost') 
-    })
-    // gameWinAudio.play('#gameWin-audio')
+    cells[ghost.currentPosition].classList.add(ghost.name, 'ghost') // return the ghost class back to original by adding the 'ghost' class again  
+    cells[ghost.currentPosition].classList.remove('scared-ghost')
+    clearInterval(ghost.timerId)
+    ghost.pace = 100
+    setupGhostMovement(ghost)
   }
 }
 
-function startGame(ghost) {
-  createGrid()
+function setupGhostMovement(ghost) {
+  ghost.timerId = setInterval(() => moveGhost(ghost), ghost.pace)
+}
+
+function startGame() {
+  // Hide the game over popup
   document.querySelector('#gameOver').style.visibility = 'hidden'
-  ghosts.forEach((ghost) => {
-    moveGhost(ghost)
-  })
+
+  // Reset the score
+  score = 0
+
+  // Define the maze
+  const maze = [
+    1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+    1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,
+    1,0,1,1,1,1,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,1,1,1,1,0,1,
+    1,0,1,1,1,1,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,1,1,1,1,0,1,
+    1,0,1,1,1,1,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,1,1,1,1,0,1,
+    1,0,1,1,1,1,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,1,1,1,1,0,1,
+    1,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,1,
+    1,0,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,0,1,
+    1,0,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,0,1,
+    1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,
+    1,1,1,1,1,1,0,1,1,1,0,0,0,0,0,0,0,0,1,1,1,0,1,1,1,1,1,1,
+    1,1,1,1,1,1,0,1,1,1,0,1,1,2,2,1,1,0,1,1,1,0,1,1,1,1,1,1,
+    1,1,1,1,1,1,0,1,1,1,0,1,2,2,2,2,1,0,1,1,1,0,1,1,1,1,1,1,
+    0,0,0,0,0,0,0,0,0,0,0,1,2,2,2,2,1,0,0,0,0,0,0,0,0,0,0,0,
+    1,1,1,1,1,1,0,1,1,1,0,1,2,2,2,2,1,0,1,1,1,0,1,1,1,1,1,1,
+    1,1,1,1,1,1,0,1,1,1,0,1,1,1,1,1,1,0,1,1,1,0,1,1,1,1,1,1,
+    1,1,1,1,1,1,0,1,1,1,0,1,1,1,1,1,1,0,1,1,1,0,1,1,1,1,1,1,
+    1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+    1,0,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,0,1,
+    1,0,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,0,1,
+    1,3,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,3,1,
+    1,0,1,1,0,1,1,1,0,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1,1,0,1,
+    1,0,1,1,0,1,1,1,0,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1,1,0,1,
+    1,0,0,0,0,1,1,1,0,0,0,0,0,1,1,0,0,0,0,0,1,1,1,0,0,0,0,1,
+    1,0,1,1,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,1,1,0,1,
+    1,0,1,1,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,1,1,0,1,
+    1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+    1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+  ]
+
+  // Create the board
+  createGrid(maze)
+
+  // Reset pac-man
+  pacmanCurrentPosition = 490
+  addPacman(right)
+
+  // Reset ghosts
+  const width = Math.sqrt(cells.length)
+  const directions = [-1, +1, -width, +width]
+  ghosts = [
+    new Ghost('red-ghost', 349, 250, directions),
+    new Ghost('green-ghost', 350, 300, directions),
+    new Ghost('blue-ghost', 377, 400, directions),
+    new Ghost('orange-ghost', 378, 450, directions)
+  ]
+  addGhosts()
+
+  // Reset keydown tracking
+  document.removeEventListener('keydown', handleKeyDown)
+  document.addEventListener('keydown', handleKeyDown) // listening for key press
 }
 
-// Checking For Game Over
-function gameOver() {
-  if (cells[pacmanCurrentPosition].classList.contains('ghost') // if pacman current position contains ghost
-  && !cells[pacmanCurrentPosition].classList.contains('scared-ghost')){  // and pacman current position does not contan scared-ghost
-    ghosts.forEach((ghost) => { clearInterval(ghost.timerId)})
-    document.removeEventListener('keydown', handleKeyDown)
-    document.querySelector('#gameOver').style.visibility = 'visible'
-    document.querySelector('#restart').addEventListener('click', startGame)  
-    
-    // gameOverAudio.play('#gameover-audio')
-    cells[pacmanCurrentPosition].classList.remove('pacman') 
-    ghosts.forEach((ghost) => {
-      cells[ghost.currentPosition].classList.remove(ghost.name) 
-      cells[ghost.currentPosition].classList.remove('scared-ghost') 
-    })
-  }    
-}
-
-
-
-
-
-
+startGame()
