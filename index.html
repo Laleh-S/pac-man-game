@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles/main.css">
+  <script defer src="scripts/app.js" charset="utf-8"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Rubik+Glitch&display=swap" rel="stylesheet">
+  <title>Document</title>
+</head>
+<body>
+  <!-- Game Audios -->
+  <audio id='gameOver-audio' src='sounds/gameOver.wav'></audio>
+  <audio id='gameWin-audio' src='sounds/gameWin.wav'></audio>
+  <audio id='scaredGost-audio' src='sounds/eat-scared-ghost.wav'></audio>
+  <audio control loop id='eat-power-dots' src='sounds/eat-power-dots.wav'></audio>
+  <!-- Score Display Bar -->
+  <div class='top-bar'>
+    <div>
+      <p><strong>Score: </strong><span class='score'>0</span></p> 
+    </div>
+    <img class='image' src="assets/logo.png" alt="">
+    <div id='lives'>
+      <p><img src="assets/heart.png" alt=""> <span class='live1'></span></p>
+      <p><img src="assets/heart.png" alt=""> <span class='live2'></span></p>
+      <p><img src="assets/heart.png" alt=""> <span class='lives3'></span></p>
+    </div>
+  </div>
+  <!-- Game Over and Game Win Pop Up Screen -->
+  <section id='gameOver'>
+    <h2 class='text'>GAME OVER</h2>
+    <h2 class='text' id='gameWin'>Pac - Man Wins</h2>
+    <h2>
+      <button id='restart'>Restart</button>
+    </h2>
+  </section>
+  <!-- Grid -->
+  <div class='grid-wrapper'>
+    <div class='grid'></div>  
+  </div>
+    
+</body>
+</html>

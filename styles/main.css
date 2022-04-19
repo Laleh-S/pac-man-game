@@ -1,0 +1,175 @@
+html {
+  overflow: hidden;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  overflow: auto;
+  overscroll-behavior-y: none;
+  font-family: 'DotGothic16', sans-serif;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  width: 700px;
+  height: 700px;
+  background-color: rgb(31, 25, 25);
+  /* border: 1px solid black; */
+}
+
+.grid div {
+  width: 25px;
+  height: 25px;
+} 
+
+
+.top-bar div {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid black;
+  color: red;  
+  padding-left: 10px;
+  padding-right: 10px;
+  text-transform: uppercase;
+}
+
+.top-bar {
+  display: inline-flex;
+  justify-content:space-between;
+  width: 700px;
+  background-color: black;
+  /* border: 1px solid orange; */
+}
+
+.score {
+  padding-left: 5px;
+  font-weight: bold;
+}
+
+.image {
+  width: 230px;
+  height: 50px;
+  padding-top: 10px;
+}
+
+
+.dots {
+  background-image: url(../assets/coin.png); 
+  box-sizing: border-box; 
+}
+
+/* .blank {
+  background-color: rgb(238, 183, 32);
+
+} */
+
+.walls {
+  /* background-image: url(../assets/blue-wall.png); */
+  background-image: url(../assets/brick-wall.png);
+  /* background-image: url(../assets/red-brick-wall.png); */
+  /* background-image: url(../assets/green-wall.png); */
+}
+
+@-webkit-keyframes blinker {
+  from {opacity: 1.0; color: black;}
+  to {opacity: 0.0;}
+}
+.power-dots {
+  background-image: url(../assets/power-coins.png);
+  background-image: url(../assets/star.png);
+  text-decoration: blink;
+	-webkit-animation-name: blinker;
+	-webkit-animation-duration: 0.3s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: ease-in-out;
+	-webkit-animation-direction: alternate;
+}
+
+
+.pacman {
+  background-image: url(../assets/pacman.png);
+  /* background-image: url(https://i.gifer.com/origin/f2/f2726893541a7446b988ba7743c5296c_w200.gif); */
+  height: 25px;
+  width: 25px;
+}
+
+.pacman-up {
+  -ms-transform: rotate(90deg); /* IE 9 */
+  transform: rotate(90deg);
+}
+
+.pacman-right {
+  -ms-transform: rotate(180deg); /* IE 9 */
+  transform: rotate(180deg);
+}
+
+.pacman-down {
+  -ms-transform: rotate(270deg); /* IE 9 */
+  transform: rotate(270deg);
+}
+
+.blue-ghost {
+  background-image: url(../assets/blue-ghost.png);
+}
+
+.red-ghost {
+  background-image: url(../assets/red-ghost.png);
+}
+
+.green-ghost {
+  background-image: url(../assets/green-ghost.png);
+}
+
+.orange-ghost {
+  background-image: url(../assets/orange-ghost.png);
+}
+
+.scared-ghost {
+  background-image: url(../assets/scared-ghost.png); 
+}
+
+
+#gameOver {
+  display: flex;
+  justify-content: center;   
+  align-items: center;
+  position: absolute;
+  visibility: hidden; 
+  padding-left: 50px;
+  padding-right: 50px;
+  background-color: black;
+  font-size: 20px;
+  color: red;
+  margin-top: 350px;
+  border-radius: 20px;
+}
+
+#restart {
+  padding-left: 0px 5px;
+  padding-bottom: 5px;
+  background-color: black;
+  font-family: 'DotGothic16', sans-serif;
+  color: yellow;
+  border: 1px dotted ;
+  font-size: 20px;
+  text-decoration: solid;
+  margin-left: 20px;
+  border-radius: 10px;
+  
+}  
+
+#gameWin { 
+  padding: 30px 50px;
+  position: absolute;
+  visibility: hidden; 
+  font-size: 25px;
+  background-color: black;
+  color: yellow;
+  border-radius: 20px;
+}
+
