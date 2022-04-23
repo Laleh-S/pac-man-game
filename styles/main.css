@@ -18,8 +18,7 @@ body {
   flex-wrap: wrap;
   width: 700px;
   height: 700px;
-  background-color: rgb(31, 25, 25);
-  /* border: 1px solid black; */
+  background-color: #000000;
 }
 
 .grid div {
@@ -31,19 +30,17 @@ body {
 .top-bar div {
   display: inline-flex;
   align-items: center;
-  border: 1px solid black;
-  color: red;  
+  border: 1px solid #000000;
+  color: #FF0000;  
   padding-left: 10px;
   padding-right: 10px;
-  text-transform: uppercase;
 }
 
 .top-bar {
   display: inline-flex;
   justify-content:space-between;
   width: 700px;
-  background-color: black;
-  /* border: 1px solid orange; */
+  background-color: #000000;
 }
 
 .score {
@@ -76,7 +73,7 @@ body {
 }
 
 @-webkit-keyframes blinker {
-  from {opacity: 1.0; color: black;}
+  from {opacity: 1.0; color: #000000;}
   to {opacity: 0.0;}
 }
 .power-dots {
@@ -140,36 +137,77 @@ body {
   align-items: center;
   position: absolute;
   visibility: hidden; 
-  padding-left: 50px;
-  padding-right: 50px;
-  background-color: black;
+  padding: 20px 40px;
+  background-color: #000000;
   font-size: 20px;
-  color: red;
-  margin-top: 350px;
+  color: #FF0000;
+  margin-top: 330px;
   border-radius: 20px;
 }
 
 #restart {
-  padding-left: 0px 5px;
-  padding-bottom: 5px;
-  background-color: black;
+  padding: 20px 20px;
+  background-color: #000000;
   font-family: 'DotGothic16', sans-serif;
-  color: yellow;
+  color: #FFFF00;
   border: 1px dotted ;
   font-size: 20px;
   text-decoration: solid;
   margin-left: 20px;
-  border-radius: 10px;
-  
+  border-radius: 10px; 
 }  
 
+#start {
+  padding: 5px 20px;
+  padding-bottom: 10px;
+  background-color: #000000;
+  font-family: 'DotGothic16', sans-serif;
+  color: #FFFF00;
+  border: 1px dotted ;
+  font-size: 20px;
+  text-decoration: solid;
+  margin-left: 20px;
+  border-radius: 10px; 
+}
+
 #gameWin { 
-  padding: 30px 50px;
+  display: flex;
+  justify-content: center;   
+  align-items: center;
   position: absolute;
   visibility: hidden; 
-  font-size: 25px;
-  background-color: black;
-  color: yellow;
+  padding-left: 50px;
+  padding-right: 50px;
+  background-color: #000000;
+  font-size: 20px;
+  color: #FFFF00;
+  margin-top: 350px;
   border-radius: 20px;
+}
+
+#beginGameScreen {
+  display: flex;
+  justify-content: center;   
+  align-items: center;
+  position: absolute;
+  padding-left: 50px;
+  padding-right: 50px;
+  background-color: #000000;
+  font-size: 20px;
+  color: #FFFF00;
+  margin-top: 350px;
+  border-radius: 20px;
+}
+
+#play {
+  padding: 10px 35px;
+  background-color: #000000;
+  font-family: 'DotGothic16', sans-serif;
+  color: #FFFF00;
+  border: 1px dotted ;
+  font-size: 30px;
+  text-decoration: solid;
+  margin-left: 20px;
+  border-radius: 10px; 
 }
 

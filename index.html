@@ -10,31 +10,41 @@
   <title>Document</title>
 </head>
 <body>
+
   <!-- Game Audios -->
   <audio id='gameOver-audio' src='sounds/gameOver.wav'></audio>
   <audio id='gameWin-audio' src='sounds/gameWin.wav'></audio>
   <audio id='scaredGost-audio' src='sounds/eat-scared-ghost.wav'></audio>
   <audio control loop id='eat-power-dots' src='sounds/eat-power-dots.wav'></audio>
+  
+
   <!-- Score Display Bar -->
   <div class='top-bar'>
     <div>
-      <p><strong>Score: </strong><span class='score'>0</span></p> 
+      <p><strong>SCORE: </strong><span class='score'>0</span></p> 
     </div>
-    <img class='image' src="assets/logo.png" alt="">
+    <img class='image' src='assets/logo.png' alt=''>
     <div id='lives'>
-      <p><img src="assets/heart.png" alt=""> <span class='live1'></span></p>
-      <p><img src="assets/heart.png" alt=""> <span class='live2'></span></p>
-      <p><img src="assets/heart.png" alt=""> <span class='lives3'></span></p>
+      <!-- <p><img src='assets/heart.png'  class='life' alt=''></p>
+      <p><img src='assets/heart.png' class='life' alt=''></p>
+      <p><img src='assets/heart.png' class='life' alt=''></p> -->
     </div>
   </div>
-  <!-- Game Over and Game Win Pop Up Screen -->
+
+  <!-- Pop Up Screens -->
   <section id='gameOver'>
     <h2 class='text'>GAME OVER</h2>
-    <h2 class='text' id='gameWin'>Pac - Man Wins</h2>
-    <h2>
       <button id='restart'>Restart</button>
-    </h2>
   </section>
+  <section id='gameWin'>
+    <h2 class='text'>Pac-Man Wins</h2>
+      <button id='start'>start</button>  
+  </section>
+  <section id='beginGameScreen'>
+    <h2 class='text'>Use Arrow Keys to Move Pac-Man</h2>
+      <button id='play'>Play</button>  
+  </section>
+  
   <!-- Grid -->
   <div class='grid-wrapper'>
     <div class='grid'></div>  

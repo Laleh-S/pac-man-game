@@ -1,38 +1,3 @@
-//
-// Pac-Man game
-
-// - create a grid() function losing a for loop.
-// - populate certian grids with the .wall class to create a maze. fills the rest with .dots and few .powerups.
-// - create and array for every level to indicate what .class goes in what cell and send that to grid() eg [wall, pill, powerup] etc..
-
-// - create .player
-// - playerMovment() function stops pacman from entering cells with .wall 
-// - changes what direction pacman's mouth is facing based on direction 
-// - should allow player to wrap if possible - checks if it shares position with [ghost, dots, powerup, fruit] and runs apropriate function
-// - Charecter Class obj for both player creation and ghosts {id: name: speed: startingPosition: currentPosition: chaseBehaviour} 
-//  (each ghost chases player in a different way) maybe...
-// - ghosts have the same movment limitations as player
-// - ghostChaseBehaviour() function depends on distance to player - calculate distance (populate and array with multipul distances from the player) 
-// - Ghosts will pick longest or shortest or maybe somewhere in between based on their chaseBehavior property 
-// - setInterval() function to keep it checking and updating paths
-
-// - ghostRunBehaviour() function activated when player eats a .powerup from the board 
-// - ghosts calculate what near by box would create the largest distance between them and the player 
-// - change ghost animation (have them flicker possibly) - stop ghostChaseBehavior()
-
-// - ghostEaten() function remove ghost for a setTimer and place them at the startingPosition (ghosts den)
-
-// - create fruit array of fruit objects {name: , score: , img:} or maybe just one fruit to start with.
-// - create dropFruit() function that pops a fruit randomly on spaces with no .wall at certian intervals - and are removed if not eaten after a 
-// certian amount of time has passed
-
-//- gameOver() function runs death animation removes the game displays scores.
-
-
-
-// Not to think about for now:
-//- call different animations based on direction of charecter 
-// creating the AI might prove to be the biggest challage here.. maybe figuring out a way to make the charecters transition smoothly between grids 
 
 const grid = document.querySelector('.grid')
 const scoreBoard = document.querySelector('.score')
@@ -40,11 +5,11 @@ const scoreBoard = document.querySelector('.score')
 document.querySelector('#gameOver').style.visibility = 'hidden'
 document.querySelector('#gameWin').style.visibility = 'hidden'
 
-// document.querySelector('.gameWin-score')
-// const gameOverAudio = document.querySelector('#gameOver-audio')
-// const gameWinAudio = document.querySelector('#gameWin-audio')
+const gameOverAudio = document.querySelector('#gameOver-audio')
+const gameWinAudio = document.querySelector('#gameWin-audio')
 const eatScaredGhostAudio = document.querySelector('#scaredGost-audio')
-// const eatPowerDotsAudio = document.querySelector('#eat-power-dots')
+const eatPowerDotsAudio = document.querySelector('#eat-power-dots')
+
 
 const left = 37
 const right = 39
@@ -70,6 +35,10 @@ class Ghost {
 
   changeCurrentDirectionToUp() {
     this.currentDirection = this.directions[2]
+  }
+
+  changeCurrentDirectionToLeft() {
+    this.currentDirection = this.directions[0]
   }
 }
 
@@ -149,6 +118,7 @@ function undoScared(){
   ghosts.forEach((ghost) => {
     ghost.isScared = false
   })
+  eatPowerDotsAudio.pause('#eat-power-dots')
 }
 
 // Pac-Man Eats Power-dots
@@ -157,50 +127,60 @@ function eatPowerDotIFNeeded() {
     cells[pacmanCurrentPosition].classList.remove('power-dots')  
     score += 50
     scoreBoard.innerHTML = score
-    // eatPowerDotsAudio.play('#eat-power-dots')
+    eatPowerDotsAudio.play('#eat-power-dots')
     ghosts.forEach((ghost) => {
       ghost.isScared = true
       clearInterval(ghost.timerId)
       ghost.pace = 500
       setupGhostMovement(ghost)
     })
-    setTimeout(undoScared, 10000)  
+    setTimeout(undoScared, 10000) 
   }  
 }
 
+
 // Checking for Wins
 function isGameWon () {
-  if (score === 300) {
+  if (score === 2900) {
     ghosts.forEach((ghost) => clearInterval(ghost.timerId))
     document.removeEventListener('keydown', handleKeyDown)
     document.querySelector('#gameWin').style.visibility = 'visible'
-    // gameWinAudio.play('#gameWin-audio')
+    gameWinAudio.play('#gameWin-audio')
+    document.querySelector('#start').addEventListener('click', startGame)  
     cells[pacmanCurrentPosition].classList.remove('pacman') 
-    // document.querySelector('.power-dots').style.visibility = 'hidden'
     ghosts.forEach((ghost) => {
       cells[ghost.currentPosition].classList.remove(ghost.name) 
       cells[ghost.currentPosition].classList.remove('scared-ghost') 
+      eatPowerDotsAudio.pause('#eat-power-dots')
     })
-    // gameWinAudio.play('#gameWin-audio')
   }
 }
 
 // Checking For Game Over
 function isGameOver() {
-  if (cells[pacmanCurrentPosition].classList.contains('ghost') // if pacman current position contains ghost
-  && !cells[pacmanCurrentPosition].classList.contains('scared-ghost')){  // and pacman current position does not contan scared-ghost
-    ghosts.forEach((ghost) => clearInterval(ghost.timerId))
+  const lives = document.querySelectorAll('.life');
+  if (lives.length === 0) {
     document.removeEventListener('keydown', handleKeyDown)
-    document.querySelector('#gameOver').style.visibility = 'visible'
-    document.querySelector('#restart').addEventListener('click', startGame)  
-    
-    // gameOverAudio.play('#gameover-audio')
+    document.querySelector('#gameOver').style.visibility = 'visible' 
+    ghosts.forEach((ghost) => clearInterval(ghost.timerId))
+    document.querySelector('#restart').addEventListener('click', startGame) 
     cells[pacmanCurrentPosition].classList.remove('pacman') 
+    gameOverAudio.play('#gameover-audio') 
     ghosts.forEach((ghost) => {
       cells[ghost.currentPosition].classList.remove(ghost.name) 
       cells[ghost.currentPosition].classList.remove('scared-ghost') 
-    })
-  }    
+    }) 
+  }
+  return 0;
+}  
+
+// Check if Loosing Life
+function lostLife() {
+  if (cells[pacmanCurrentPosition].classList.contains('ghost') 
+  && !cells[pacmanCurrentPosition].classList.contains('scared-ghost')){
+    const lives = document.querySelectorAll('.life');
+    lives[0].remove() 
+  }
 }
 
 // Moving Pac-Man in The Maze
@@ -239,11 +219,12 @@ function handleKeyDown(event) {
   eatDotIfNeeded()
   eatPowerDotIFNeeded()
   isGameWon()
+  lostLife() 
   isGameOver()
 }
 
+// Add the Ghosts to the Grid 
 function addGhosts() {
-  // Add the Ghosts to the Grid 
   ghosts.forEach((ghost) => {
     cells[ghost.currentPosition].classList.add(ghost.name) // calling individual ghosts using their name
     cells[ghost.currentPosition].classList.add('ghost') //  
@@ -263,10 +244,10 @@ function moveGhost(ghost) {
     
     if (cells[ghost.currentPosition].classList.contains('ghost-house')) {
       ghost.changeCurrentDirectionToUp()
-    }
+    } 
 
     ghost.currentPosition += ghost.currentDirection    
-    cells[ghost.currentPosition].classList.add(ghost.name, 'ghost') // add the ghost 
+    cells[ghost.currentPosition].classList.add(ghost.name, 'ghost') 
     cells[ghost.currentPosition].classList.add('ghost')
   } 
     
@@ -303,9 +284,16 @@ function setupGhostMovement(ghost) {
 function startGame() {
   // Hide the game over popup
   document.querySelector('#gameOver').style.visibility = 'hidden'
+  document.querySelector('#gameWin').style.visibility = 'hidden'
+
 
   // Reset the score
   score = 0
+  const livesContainer = document.querySelector('#lives')
+  for (let i = 1; i <= 3; i++) {
+    livesContainer.innerHTML += "<p><img src='assets/heart.png'  class='life'></p>"
+  }
+
 
   // Define the maze
   const maze = [
@@ -359,7 +347,10 @@ function startGame() {
 
   // Reset keydown tracking
   document.removeEventListener('keydown', handleKeyDown)
-  document.addEventListener('keydown', handleKeyDown) // listening for key press
+  document.addEventListener('keydown', handleKeyDown)
+  document.getElementById('play').addEventListener('click', () => {
+    document.getElementById("beginGameScreen").style.visibility = 'hidden'
+  })
 }
-
 startGame()
+
