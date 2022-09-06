@@ -1,5 +1,6 @@
 # Pac-Man Game
-Link to the project: 
+Link to the project: https://laleh-s.github.io/GA-Project-1
+
 ## Overview
 In this project I had two weeks to build a grid base game which would render in a browser using JavaScript, HTML and CSS. I was given a list of games to choose from. I decided to choose pac_Man.
 
