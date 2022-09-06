@@ -1,7 +1,8 @@
 # Pac-Man Game
+Link to the project: 
+## Overview
+In this project I had two weeks to build a grid base game which would render in a browser using JavaScript, HTML and CSS. I was given a list of games to choose from. I decided to choose pac_Man.
 
-## Brief
-In this project I had one week to build a JavaScript grid base game. Since on my previous project I chose the game snake, I decided to go for the PackMan game this time to challenge myself creating a different game.
 
 ## Requirements
 - Render a game in the browser
