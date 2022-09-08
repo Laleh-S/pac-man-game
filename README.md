@@ -30,13 +30,14 @@ Although I played Pac-Man many times before, I never made the game. Therefore, I
 
 ## Timeline
 
-**week 1**  
+**WEEK 1**  
 - Decide which game to choose from
 - Plan and whiteboard 
 - Create the maze
 - Add Pac-Man to the maze
 
 How the maze works is that, all **0**s represent pac-dots, **1**s are walls, **2**s are the ghost house and **3**s are power-dots. 
+
 ````
 Creating the maze was fun. 
   const maze = [
@@ -92,15 +93,38 @@ function createGrid(maze) {
   }
 }
 ````
-  
 
+
+After adding Pac-Man to the board, I had to make it able to move around the grid. Therefore, I created a function to move Pac-Man using keycodes. It worked well, but Pac-Man was faced to one direction at all times, even when it was moving up or down. I had to find a way of turning it head to different directions. I found that this could be fixed with some styling. Although I wanted to leave the styling for the third week, I decided to do this using CSS transform property. 
+
+````
+.pacman-up {
+  -ms-transform: rotate(90deg); /* IE 9 */
+  transform: rotate(90deg);
+}
+
+.pacman-right {
+  -ms-transform: rotate(180deg); /* IE 9 */
+  transform: rotate(180deg);
+}
+
+.pacman-down {
+  -ms-transform: rotate(270deg); /* IE 9 */
+  transform: rotate(270deg);
+}
+
+````
  
- **week 2** 
- - Add Pac-Man to the maze  
+ **WEEK 2** 
  - Add ghosts to the maze
- - Make Pack-Man and the ghosts move in different directions around the maze
+ - Make the ghosts move in different directions around the maze
  
- **week 3** 
+ **Second challenge:**
+ 
+ 
+ 
+ 
+ **WEEK 3** 
 - MVP
 - Add sounds
 - Styling 
