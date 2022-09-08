@@ -23,9 +23,12 @@ Pac-Man moves around a maze and eats all the dots inside while avoiding four  gh
 - GitHub Pages
 
 ## Planning
-Although I played Pac-Man many times before, I never made the game. Therefore, I began researching to get an idea of the design pattern. After the  research, I had a better understanding of how the Pac-Man game really works behind the scenes. So I started thinking and planning about the functions and the features I would like to include in my game. Once I had a basic layout and features in mind I started with the whiteboarding. 
+Although I played Pac-Man many times before, I never made the game. Therefore, I began researching to get an idea of the design pattern. After the  research, I had a better understanding of how the Pac-Man game really works behind the scenes. So I started thinking and planning about the functions and the features I would like to include in my game. Once I had a basic layout and features in mind I started with the whiteboarding. I have also planned the timeline and set a target for MVP.
+ 
 
 <img width="1178" alt="Screen Shot 2022-09-06 at 19 21 52" src="https://user-images.githubusercontent.com/92860992/188717974-8661f786-a694-4ffb-9022-293e1c1c6103.png">
+
+## Timeline
 
 
 ## Project Screenshot
