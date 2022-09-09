@@ -119,16 +119,133 @@ After adding Pac-Man to the board, I had to make it able to move around the grid
  - Add ghosts to the maze
  - Make the ghosts move in different directions around the maze
  
- **Second challenge:**
+Initially when I started creating the ghost, I started with creating one ghost function, I thought I would get one ghost done and then the rest would be easy. When I moved on to create the second ghost I noticed that coding this way would cause repetition. To avoid this, I used a class constructor function to create an object instance of a class. Inside the class constructor I passed the ghost’s name, starting position, pace, and the direction in which they move.
  
+
+````
+  const width = Math.sqrt(cells.length)
+  const directions = [-1, +1, -width, +width]
+  ghosts = [
+    new Ghost('red-ghost', 349, 250, directions),
+    new Ghost('green-ghost', 350, 300, directions),
+    new Ghost('blue-ghost', 377, 400, directions),
+    new Ghost('orange-ghost', 378, 450, directions)
+  ]
+  addGhosts()
+  
+  
+  function addGhosts() {
+  ghosts.forEach((ghost) => {
+    cells[ghost.currentPosition].classList.add(ghost.name) // calling individual ghosts using their name
+    cells[ghost.currentPosition].classList.add('ghost') //  
+  })
+}
+````
  
+One of the major challenges in creating this game was the ghosts movement. My first issue was that I had set the ghosts starting position to be inside the ghosts house. I wanted my ghost to move in a random direction and this caused some of the ghosts to get stuck inside a ghost house and not be able to get out. I thought I would first get the ghosts out of the ghosts house and then set them to move randomly. 
  
+````
+function addGhosts() {
+  ghosts.forEach((ghost) => {
+    cells[ghost.currentPosition].classList.add(ghost.name) // calling individual ghosts using their name
+    cells[ghost.currentPosition].classList.add('ghost') //  
+  })
+
+  ghosts.forEach((ghost) => {
+    setupGhostMovement(ghost)
+  })
+}
+
+function moveGhost(ghost) {
+  if (!cells[ghost.currentPosition + ghost.currentDirection].classList.contains('walls') &&
+      !cells[ghost.currentPosition + ghost.currentDirection].classList.contains('ghost')){  //if this is true...
+    cells[ghost.currentPosition].classList.remove(ghost.name) // remove each ghost name to avoid multiplying 
+    cells[ghost.currentPosition].classList.replace('ghost','scared-ghost') // replace ghost with scared-ghost
+    cells[ghost.currentPosition].classList.remove('scared-ghost') // remove scared-ghost stopped them multiplying
+    
+    if (cells[ghost.currentPosition].classList.contains('ghost-house')) {
+      ghost.changeCurrentDirectionToUp()
+    } 
+
+    ghost.currentPosition += ghost.currentDirection    
+    cells[ghost.currentPosition].classList.add(ghost.name, 'ghost') 
+    cells[ghost.currentPosition].classList.add('ghost')
+  } 
+    
+  ghost.changeCurrentDirection()
+  
+  if (ghost.isScared){
+    cells[ghost.currentPosition].classList.add('scared-ghost')
+  }
+  lostLife() 
+  isGameOver()
+
+
+  if (ghost.isScared && cells[ghost.currentPosition].classList.contains('pacman')){ 
+    eatScaredGhostAudio.play('#scaredGost-audio')
+    ghost.isScared = false
+    cells[ghost.currentPosition].classList.remove(ghost.name)
+    cells[ghost.currentPosition].classList.replace('ghost','scared-ghost') // replace ghost with scared-ghost
+    cells[ghost.currentPosition].classList.remove('ghost') 
+    cells[ghost.currentPosition].classList.remove('scared-ghost')
+    ghost.currentPosition = ghost.startPosition // return ghosts to starting position
+    score += 100
+    scoreBoard.innerHTML = score
+
+    cells[ghost.currentPosition].classList.add(ghost.name, 'ghost') // return the ghost class back to original by adding the 'ghost' class again  
+    cells[ghost.currentPosition].classList.remove('scared-ghost')
+    clearInterval(ghost.timerId)
+    ghost.pace = 100
+    setupGhostMovement(ghost)
+  }
+}
+
+````
  
  **WEEK 3** 
 - MVP
 - Add sounds
 - Styling 
+After adding Pac-Man to the board, I noticed that he was facing in one direction at all times, even when he was moving up or down. I had to find a way of turning his head to different directions. I used CSS transform property to rotate the Pac-Man image to different direction. I then created a function which adds Pac-Man to the maze facing 4 different directions.
 
+````
+.pacman-up {
+  -ms-transform: rotate(90deg); /* IE 9 */
+  transform: rotate(90deg);
+}
+
+.pacman-right {
+  -ms-transform: rotate(180deg); /* IE 9 */
+  transform: rotate(180deg);
+}
+
+.pacman-down {
+  -ms-transform: rotate(270deg); /* IE 9 */
+  transform: rotate(270deg);
+}
+
+
+function addPacman(direction) {
+  let cssClass
+  switch (direction) {
+    case left:
+      cssClass = 'pacman'
+      break;
+    case up:
+      cssClass = 'pacman-up'
+      break;
+    case right:
+      cssClass = 'pacman-right'
+      break;
+    case down:
+      cssClass = 'pacman-down'
+      break;
+  }
+  cells[pacmanCurrentPosition].classList.add('pacman')
+  cells[pacmanCurrentPosition].classList.add(cssClass)
+}
+
+````
 
 ## Project Screenshot
 
