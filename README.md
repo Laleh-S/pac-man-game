@@ -22,7 +22,7 @@ Pac-Man moves around a maze and eats all the dots inside while avoiding four  gh
 - Git
 - GitHub Pages
 
-## Planning and whiteboarding 
+## Planning and Whiteboarding 
 Although I played Pac-Man many times before, I never made the game. Therefore, I began researching to get an idea of the design pattern. After the  research, I had a better understanding of how the Pac-Man game really works behind the scenes. So I started thinking and planning about the functions and the features I would like to include in my game. Once I had a basic layout and features in mind I started with the whiteboarding. I have also planned the timeline and set a target for MVP.
  
 
@@ -196,7 +196,7 @@ function moveGhost(ghost) {
 
 <img width="695" alt="Screen Shot 2022-09-08 at 13 23 21" src="https://user-images.githubusercontent.com/92860992/189110476-b93cd5fe-d300-4d42-bb9f-483c2814acad.png">
 
-## Key learnings
+## Key Learnings
 
 I learned the importance of good planning and time management in advance. I started working on the game without creating a reset button from the start. It was only in the last week of the project when I realised that.  Unfortunately this caused me a lot of headache and influenced the final result.  When I was creating the ghost I thought creating one ghost to start with and the rest are going to be the same. I was very wrong because that was causing a lot of repetition in my code and that was a wrong practice. 
 
@@ -204,7 +204,7 @@ As well as everything else I learned a lot about Pac-Man game especially the gho
 
 
 
-## Further development
+## Further Development
 - Adding ghosts AI movement
 - Adding mobile version
 
