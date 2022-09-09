@@ -198,7 +198,7 @@ function moveGhost(ghost) {
 
 ## What I learned 
 
-I learned the importance of good planning and time management in advance. I started working on the game without creating a reset button from the start. It was only in the last week of the project when I realised that. Unfortunatly this caused me a lot of headache and influenced the final result.  When I was creating the ghost I thought creating one ghost to start with and the rest are going to be the same. I was very wrong because that was causing a lot of repetition in my code and that was a wrong practice. 
+I learned the importance of good planning and time management in advance. I started working on the game without creating a reset button from the start. It was only in the last week of the project when I realised that.  Unfortunately this caused me a lot of headache and influenced the final result.  When I was creating the ghost I thought creating one ghost to start with and the rest are going to be the same. I was very wrong because that was causing a lot of repetition in my code and that was a wrong practice. 
 
 As well as everything else I learned a lot about Pac-Man game especially the ghosts moving pattern by reading the following source: https://dev.to/code2bits/pac-man-patterns--ghost-movement-strategy-pattern-1k1a
 
