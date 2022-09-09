@@ -196,7 +196,7 @@ function moveGhost(ghost) {
 
 <img width="695" alt="Screen Shot 2022-09-08 at 13 23 21" src="https://user-images.githubusercontent.com/92860992/189110476-b93cd5fe-d300-4d42-bb9f-483c2814acad.png">
 
-## What I learned 
+## Key learnings
 
 I learned the importance of good planning and time management in advance. I started working on the game without creating a reset button from the start. It was only in the last week of the project when I realised that.  Unfortunately this caused me a lot of headache and influenced the final result.  When I was creating the ghost I thought creating one ghost to start with and the rest are going to be the same. I was very wrong because that was causing a lot of repetition in my code and that was a wrong practice. 
 
