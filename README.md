@@ -204,7 +204,7 @@ As well as everything else I learned a lot about Pac-Man game especially the gho
 
 
 
-## Further Development
+## Future Improvements
 - Adding ghosts AI movement
 - Adding mobile version
 
