@@ -206,6 +206,7 @@ function moveGhost(ghost) {
 - MVP
 - Add sounds
 - Styling 
+
 After adding Pac-Man to the board, I noticed that he was facing in one direction at all times, even when he was moving up or down. I had to find a way of turning his head to different directions. I used CSS transform property to rotate the Pac-Man image to different direction. I then created a function which adds Pac-Man to the maze facing 4 different directions.
 
 ````
