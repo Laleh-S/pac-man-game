@@ -126,7 +126,9 @@ function addPacman(direction) {
 
 Initially when I started creating the ghost, I started with creating one ghost function, I thought I would get one ghost done and then the rest would be easy. When I moved on to create the second ghost I noticed that coding this way would cause repetition. To avoid this, I used a class constructor function to create an object instance of a class. Inside the class constructor I passed the ghost’s name, starting position, pace, and the direction in which they move.
 
-- One of the challenges in creating this game was the ghosts movement. The issue was that I set the ghosts starting position to be inside the ghosts house. I wanted my ghost to move in a random direction and this caused some of the ghosts to get stuck inside the ghost house and not be able to get out. I thought I would first get the ghosts out of the ghosts house and then set them to move randomly.
+- **Challenges**
+
+One of the challenges in creating this game was the ghosts movement. The issue was that I set the ghosts starting position to be inside the ghosts house. I wanted my ghost to move in a random direction and this caused some of the ghosts to get stuck inside the ghost house and not be able to get out. I thought I would first get the ghosts out of the ghosts house and then set them to move randomly.
 
 ````
 function addGhosts() {
@@ -194,9 +196,18 @@ function moveGhost(ghost) {
 
 <img width="695" alt="Screen Shot 2022-09-08 at 13 23 21" src="https://user-images.githubusercontent.com/92860992/189110476-b93cd5fe-d300-4d42-bb9f-483c2814acad.png">
 
+## What I learned 
+
+I learned the importance of good planning and time management in advance. I started working on the game without creating a reset button from the start. It was only in the last week of the project when I realised that. Unfortunatly this caused me a lot of headache and influenced the final result.  When I was creating the ghost I thought creating one ghost to start with and the rest are going to be the same. I was very wrong because that was causing a lot of repetition in my code and that was a wrong practice. 
+
+As well as everything else I learned a lot about Pac-Man game especially the ghosts moving pattern by reading the following source: https://dev.to/code2bits/pac-man-patterns--ghost-movement-strategy-pattern-1k1a
 
 
-This is a very helpful website I came across while I was searching: https://dev.to/code2bits/pac-man-patterns--ghost-movement-strategy-pattern-1k1a
+
+## Further development
+- Adding ghosts AI movement
+- Adding mobile version
+
 
 
 
