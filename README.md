@@ -198,14 +198,6 @@ When I was adding sounds to the game I learned about an html loop attribute whic
 ````
 
 
-## Challenges
-
-**First challenge** in creating this game was the ghosts movement. The issue was that I set the ghosts starting position to be inside the ghosts house. I wanted my ghost to move in a random direction and this caused some of the ghosts to get stuck inside the ghost house and not be able to get out. I thought I would first get the ghosts out of the ghosts house and then set them to move randomly.
-
- 
-**Second challenge** was the reset option of the game. I did not think about creating the reset game function from the beginning of the game therefore creating a reset function at the end of the game caused me a lot of headaches. To fix that I ended up changing the entire code.
-
-
 ## Project Screenshot
 
 <img width="695" alt="Screen Shot 2022-09-08 at 13 23 21" src="https://user-images.githubusercontent.com/92860992/189110476-b93cd5fe-d300-4d42-bb9f-483c2814acad.png">
@@ -216,7 +208,12 @@ I learned the importance of good planning and time management in advance. I star
 
 As well as everything else I learned a lot about Pac-Man game especially the ghosts moving pattern by reading the following source: https://dev.to/code2bits/pac-man-patterns--ghost-movement-strategy-pattern-1k1a
 
+## Challenges
 
+**First challenge** in creating this game was the ghosts movement. The issue was that I set the ghosts starting position to be inside the ghosts house. I wanted my ghost to move in a random direction and this caused some of the ghosts to get stuck inside the ghost house and not be able to get out. I thought I would first get the ghosts out of the ghosts house and then set them to move randomly.
+
+ 
+**Second challenge** was the reset option of the game. I did not think about creating the reset game function from the beginning of the game therefore creating a reset function at the end of the game caused me a lot of headaches. To fix that I ended up changing the entire code.
 
 ## Future Improvements
 - Adding ghosts AI movement
