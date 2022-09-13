@@ -191,6 +191,12 @@ function moveGhost(ghost) {
 Because I did not think about creating the game reset option from the beginning of the game I had to refactor the entire code and spend most of my MVP and styling time working on the reset feature. For that reason my final styling was suffored. 
 In the last remaining days I mostly focused on adding and editing sounds as well as working on visual effects and gameover pop up screen.
 
+When I was adding sounds to the game I learned about an html loop attribute which puts a sound on loop and plays it over and over which i found helpful. 
+
+````
+  <audio control loop id='eat-power-dots' src='sounds/eat-power-dots.wav'></audio>
+````
+
 
 ## Challenges
 
