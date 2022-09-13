@@ -126,13 +126,6 @@ function addPacman(direction) {
 
 Initially when I started creating the ghost, I started with creating one ghost function, I thought I would get one ghost done and then the rest would be easy. When I moved on to create the second ghost I noticed that coding this way would cause repetition. To avoid this, I used a class constructor function to create an object instance of a class. Inside the class constructor I passed the ghost’s name, starting position, pace, and the direction in which they move.
 
-- **Challenges**
-
-**First challenge** in creating this game was the ghosts movement. The issue was that I set the ghosts starting position to be inside the ghosts house. I wanted my ghost to move in a random direction and this caused some of the ghosts to get stuck inside the ghost house and not be able to get out. I thought I would first get the ghosts out of the ghosts house and then set them to move randomly.
-
- 
-**Second challenge** was the reset game option of the game. I did not think about creating the reset game function from the beginning of the game therefore creating a reset function at the end of the game caused me a lot of headaches. To fix that I ended up changing the entire code.
-
 
 ````
 function addGhosts() {
@@ -197,6 +190,14 @@ function moveGhost(ghost) {
 
 Because I did not think about creating the game reset option from the beginning of the game I had to refactor the entire code and spend most of my MVP and styling time working on the reset feature. For that reason my final styling was suffored. 
 In the last remaining days I mostly focused on adding and editing sounds as well as working on visual effects and gameover pop up screen.
+
+
+## Challenges
+
+**First challenge** in creating this game was the ghosts movement. The issue was that I set the ghosts starting position to be inside the ghosts house. I wanted my ghost to move in a random direction and this caused some of the ghosts to get stuck inside the ghost house and not be able to get out. I thought I would first get the ghosts out of the ghosts house and then set them to move randomly.
+
+ 
+**Second challenge** was the reset option of the game. I did not think about creating the reset game function from the beginning of the game therefore creating a reset function at the end of the game caused me a lot of headaches. To fix that I ended up changing the entire code.
 
 
 ## Project Screenshot
