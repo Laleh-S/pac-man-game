@@ -221,7 +221,7 @@ When Pac-Man eats powedots the ghosts should become blue but they flash back bet
 
 
 ## Wins
-I was very happy being able to create a working functional game and meet my MVP goals such as creating a maze, adding Pac-Man, creating the ghosts and being able to make them all move around in different directions. 
+I was very happy being able to create a working functional game and meet my MVP goals such as creating a maze, adding Pac-Man, creating the ghosts and being able to make them all move around in different directions. I also was happy being able to reset my game as I did not create a reset function from the begining. That took a lot of the project time and I am happy to be able to do that. 
 
 
 ## Future Improvements
