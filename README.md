@@ -130,6 +130,10 @@ Initially when I started creating the ghost, I started with creating one ghost f
 
 One of the challenges in creating this game was the ghosts movement. The issue was that I set the ghosts starting position to be inside the ghosts house. I wanted my ghost to move in a random direction and this caused some of the ghosts to get stuck inside the ghost house and not be able to get out. I thought I would first get the ghosts out of the ghosts house and then set them to move randomly.
 
+ 
+Next challenge was the reset game option of the game. I did not think about creating the reset game function from the beginning of the game therefore creating a reset function at the end of the game caused me a lot of headaches. To fix that I ended up changing the entire code.
+
+
 ````
 function addGhosts() {
   ghosts.forEach((ghost) => {
@@ -190,6 +194,9 @@ function moveGhost(ghost) {
 **WEEK 3** 
 - MVP
 - Styling 
+
+Because I did not think about creating the game reset option from the beginning of the game I had to refactor the entire code and spend most of my MVP and styling time working on the reset feature. For that reason my final styling was suffored. 
+In the last remaining days I mostly focused on adding and editing sounds as well as working on visual effects and gameover pop up screen.
 
 
 ## Project Screenshot
