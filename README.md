@@ -130,8 +130,8 @@ Initially when I started creating the ghost, I started with creating one ghost f
 ````
 function addGhosts() {
   ghosts.forEach((ghost) => {
-    cells[ghost.currentPosition].classList.add(ghost.name) // calling individual ghosts using their name
-    cells[ghost.currentPosition].classList.add('ghost') //  
+    cells[ghost.currentPosition].classList.add(ghost.name) 
+    cells[ghost.currentPosition].classList.add('ghost')  
   })
 
   ghosts.forEach((ghost) => {
@@ -168,14 +168,14 @@ function moveGhost(ghost) {
     eatScaredGhostAudio.play('#scaredGost-audio')
     ghost.isScared = false
     cells[ghost.currentPosition].classList.remove(ghost.name)
-    cells[ghost.currentPosition].classList.replace('ghost','scared-ghost') // replace ghost with scared-ghost
+    cells[ghost.currentPosition].classList.replace('ghost','scared-ghost') 
     cells[ghost.currentPosition].classList.remove('ghost') 
     cells[ghost.currentPosition].classList.remove('scared-ghost')
     ghost.currentPosition = ghost.startPosition // return ghosts to starting position
     score += 100
     scoreBoard.innerHTML = score
 
-    cells[ghost.currentPosition].classList.add(ghost.name, 'ghost') // return the ghost class back to original by adding the 'ghost' class again  
+    cells[ghost.currentPosition].classList.add(ghost.name, 'ghost') 
     cells[ghost.currentPosition].classList.remove('scared-ghost')
     clearInterval(ghost.timerId)
     ghost.pace = 100
@@ -215,11 +215,17 @@ As well as everything else I learned a lot about Pac-Man game especially the gho
  
 **Second challenge** was the reset option of the game. I did not think about creating the reset game function from the beginning of the game therefore creating a reset function at the end of the game caused me a lot of headaches. To fix that I ended up changing the entire code.
 
+
+## Bugs
+
+
 ## Future Improvements
 - Adding ghosts AI movement
 - Adding mobile version
 - Add levels
 - Work on Start and Gameover UI
+
+
 
 
 
