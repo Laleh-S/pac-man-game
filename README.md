@@ -188,7 +188,7 @@ function moveGhost(ghost) {
 - MVP
 - Styling 
 
-Because I did not think about creating the game reset option from the beginning of the game I had to refactor the entire code and spend most of my MVP and styling time working on the reset feature. For that reason my final styling was suffored. 
+Because I did not think about creating the game reset option from the beginning of the game I had to refactor the entire code and spend most of my MVP and styling time working on the reset feature. For that reason my final styling suffered. 
 In the last remaining days I mostly focused on adding and editing sounds as well as working on visual effects and gameover pop up screen.
 
 When I was adding sounds to the game I learned about an html loop attribute which puts a sound on loop and plays it over and over which i found helpful. 
@@ -221,7 +221,7 @@ When Pac-Man eats powedots the ghosts should become blue but they flash back bet
 
 
 ## Wins
-I was very happy being able to create a working functional game and meet my MVP goals such as creating a maze, adding Pac-Man, creating the ghosts and being able to make them all move around in different directions. I also was happy being able to reset my game as I did not create a reset function from the begining. That took a lot of the project time and I am happy to be able to do that. 
+I was very happy being able to create a working functional game and meet my MVP goals such as creating a maze, adding Pac-Man, creating the ghosts and being able to make them all move around in different directions. I also was happy being able to reset my game as I did not create a reset function from the beginning. That took a lot of the project time and I am happy to be able to do that. 
 
 
 ## Future Improvements
