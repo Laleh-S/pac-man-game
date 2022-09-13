@@ -217,6 +217,11 @@ As well as everything else I learned a lot about Pac-Man game especially the gho
 
 
 ## Bugs
+When Pac-Man eats powedots the ghosts should become blue but they flash back between blue and their own actual colours. 
+
+
+## Wins
+I was very happy being able to create a working functional game and meet my MVP goals such as creating a maze, adding Pac-Man, creating the ghosts and being able to make them all move around in different directions. 
 
 
 ## Future Improvements
