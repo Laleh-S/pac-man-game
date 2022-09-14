@@ -2,7 +2,7 @@
 Link to the project: https://laleh-s.github.io/GA-Project-1
 
 ## Overview
-In this project I had three weeks to build a grid base game using JavaScript, HTML and CSS. I was given a list of games to choose from. After going through the options, I decided to choose Pac-Man. Pac-Man, originally called Puck Man in Japan, is a 1980 maze action video game. 
+In this project I had three weeks to build a grid based game using JavaScript, HTML and CSS. I was given a list of games to choose from. After going through the options, I decided to choose Pac-Man. Pac-Man, originally called Puck Man in Japan, is a 1980 maze action video game. 
 
 **How it works:**
 Pac-Man moves around a maze and eats all the dots inside while avoiding four  ghosts. When Pac-Man eats the large flashing dots the ghosts temporarily turn blue, which allow Pac-Man to eat them for bonus. The Ghosts also have the ability to catch Pac-Man which results in Pac-Man losing life and ending the game.
@@ -191,7 +191,7 @@ function moveGhost(ghost) {
 Because I did not think about creating the game reset option from the beginning of the game I had to refactor the entire code and spend most of my MVP and styling time working on the reset feature. For that reason my final styling suffered. 
 In the last remaining days I mostly focused on adding and editing sounds as well as working on visual effects and gameover pop up screen.
 
-When I was adding sounds to the game I learned about an html loop attribute which puts a sound on loop and plays it over and over which i found helpful. 
+When I was adding sounds to the game I learned about an HTML loop attribute which puts a sound on loop and plays it over and over which I found helpful. 
 
 ````
   <audio control loop id='eat-power-dots' src='sounds/eat-power-dots.wav'></audio>
