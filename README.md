@@ -1,5 +1,5 @@
 # Pac-Man Game
-Link to the project: https://laleh-s.github.io/GA-Project-1
+Link to the project: https://laleh-s.github.io/pac-man-game/
 
 ## Overview
 In this solo project I had three weeks to build a grid based game using JavaScript, HTML and CSS. I was given a list of games to choose from. After going through the options, I decided to choose Pac-Man. Pac-Man, originally called Puck Man in Japan, is a 1980 maze action video game. 
